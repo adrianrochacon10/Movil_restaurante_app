@@ -7,16 +7,30 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.movil_restaurante_app.screens.HomeScreen
 import com.example.movil_restaurante_app.screens.PedidoScreen
+import com.example.movil_restaurante_app.screens.ProductMenuScreen
 //import com.example.movil_restaurante_app.screens.CheckScreen
+import com.example.movil_restaurante_app.screens.SeguimientoScreen
+import com.example.movil_restaurante_app.viewmodel.ProductViewModel
 
+
+sealed class Screen(val route: String) {
+    object ProductMenu : Screen("product_menu")
+    object Pedido : Screen("pedido")
+    object Check : Screen("check")
+    object Cocina : Screen("cocina")
+    object Seguimiento : Screen("seguimiento/{orderId}")
+}
 
 @Composable
-fun AppNavigation() {
-    val navController: NavHostController = rememberNavController()
-
-    NavHost(navController = navController, startDestination = "home") {
-        composable("home") { HomeScreen(navController) }
-        composable("pedido") { PedidoScreen() }
-  //      composable("checarPedido") { CheckScreen() }
+fun AppNavigation(productViewModel: ProductViewModel, navController: NavHostController = rememberNavController()) {
+    NavHost(navController = navController, startDestination = Screen.ProductMenu.route) {
+        composable(Screen.ProductMenu.route) { ProductMenuScreen(navController, productViewModel) }
+        composable(Screen.Pedido.route) { PedidoScreen(navController, productViewModel) }
+        // composable(Screen.Check.route) { CheckScreen(navController) }
+        // composable(Screen.Cocina.route) { CocinaScreen(navController) }
+        composable(Screen.Seguimiento.route) { backStackEntry ->
+            val orderId = backStackEntry.arguments?.getString("orderId") ?: ""
+            SeguimientoScreen(navController, productViewModel, orderId)
+        }
     }
 }
