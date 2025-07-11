@@ -14,7 +14,7 @@ class MainActivity : FragmentActivity() {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_browse_fragment, MainFragment())
-                .commitNow()12334566
+                .commitNow()
         }
     }
 }
