@@ -21,4 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Movil_restaurante_app"
 include(":app")
-include(":pantalla")

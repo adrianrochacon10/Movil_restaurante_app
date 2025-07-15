@@ -10,6 +10,10 @@ import com.example.movil_restaurante_app.screens.PedidoScreen
 import com.example.movil_restaurante_app.screens.ProductMenuScreen
 //import com.example.movil_restaurante_app.screens.CheckScreen
 import com.example.movil_restaurante_app.screens.SeguimientoScreen
+import com.example.movil_restaurante_app.screens.CocinaScreen
+import com.example.movil_restaurante_app.screens.CocinaAdminScreen
+import com.example.movil_restaurante_app.screens.AgregarPlatilloScreen
+import com.example.movil_restaurante_app.screens.AdminSeguimientoScreen
 import com.example.movil_restaurante_app.viewmodel.ProductViewModel
 
 
@@ -27,10 +31,14 @@ fun AppNavigation(productViewModel: ProductViewModel, navController: NavHostCont
         composable(Screen.ProductMenu.route) { ProductMenuScreen(navController, productViewModel) }
         composable(Screen.Pedido.route) { PedidoScreen(navController, productViewModel) }
         // composable(Screen.Check.route) { CheckScreen(navController) }
-        // composable(Screen.Cocina.route) { CocinaScreen(navController) }
+        composable(Screen.Cocina.route) { CocinaScreen(navController, productViewModel) }
         composable(Screen.Seguimiento.route) { backStackEntry ->
             val orderId = backStackEntry.arguments?.getString("orderId") ?: ""
             SeguimientoScreen(navController, productViewModel, orderId)
         }
+        // Nueva ruta para admin de cocina
+        composable("cocina_admin") { CocinaAdminScreen(navController, productViewModel) }
+        composable("agregar_platillo") { AgregarPlatilloScreen() }
+        composable("admin_seguimiento") { AdminSeguimientoScreen(productViewModel) }
     }
 }
