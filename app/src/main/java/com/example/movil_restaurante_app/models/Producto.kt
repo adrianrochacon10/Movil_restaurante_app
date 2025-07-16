@@ -10,4 +10,4 @@ data class Producto(
     val categoria: String = "",
     val imagenBase64: String? = null,
     val rating: Double = 0.0
-) 
+)

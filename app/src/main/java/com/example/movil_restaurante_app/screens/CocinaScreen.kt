@@ -104,7 +104,7 @@ fun CocinaScreen(navController: NavHostController, viewModel: ProductViewModel =
                                     Text("Total: $${"%.2f".format(orden.total)}", fontWeight = FontWeight.Bold, color = Color(0xFFB85C00))
                                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
                                         if (estado != EstadoOrden.RECIBIDO) {
-                                            OutlinedButton(
+                                             OutlinedButton(
                                                 onClick = {
                                                     viewModel.cambiarEstadoOrden(orden.id, -1)
                                                 },

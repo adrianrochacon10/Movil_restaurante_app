@@ -99,7 +99,7 @@ fun PedidoScreen(navController: NavHostController, viewModel: ProductViewModel =
                 verticalArrangement = Arrangement.spacedBy(14.dp)
             ) {
                 items(carrito.size) { index ->
-                    val item = carrito[index]
+                     val item = carrito[index]
                     Box {
                         Card(
                             shape = RoundedCornerShape(18.dp),
